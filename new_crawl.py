@@ -131,7 +131,7 @@ def crawling():
     except ZeroDivisionError:
         print("ㅡ img_list 가 비어있음 ㅡ")
 
-    driver.quit()
+    #driver.quit()
 
 def filtering():
     print("ㅡ 필터링 시작 ㅡ")
@@ -164,24 +164,33 @@ def checking():
             print(f"ㅡ 중복된 검색어 ({dir_name}) ㅡ")
             return True
 
-# clickAndRetrieve() 과정에서 urlretrieve 이 너무 오래 걸릴 경우를 대비해 타임 아웃 지정
-socket.setdefaulttimeout(30)
 
-# 이미지들이 저장될 경로 및 폴더 이름
-path = "D:/Crawling/"
-date = "2020.09.24"
 
-# 드라이버 경로 지정 (Microsoft Edge)
-driver = webdriver.Chrome()
 
-# 크롤링한 이미지 수
-crawled_count = 6000
+search_key = ['한글','illustration', 'illust','nature', 'picture', 'photo', 'drawing', 'take photo', 'background image', 'sky', 'dark star', 'party', 'movie', 'poster', 'good image', 'confuse image', '이미지', '자동차', '신용카드', '신용카드 배경', '일러스트', '일러스트레이션', '그림', '배경화면', '배경', '사진', '자연', '풍경', '거리', 'street', 'hiphop', 'concert', '포스터', '판촉물', '상품', 'product', '복잡한 이미지', '깨끗한 이미지', '배경 이미지', '책', 'book', '책 이미지', '법원문서', '문서', 'document', 'math', '수학', '역사', 'history', 'path', '경로', 'algorithm', '알고리즘', 'microsoft', 'stock', 'girl group', 'building', '빌딩', 'structure', '구조', '컴퓨터', 'coumputer', 'vacation', '휴가', 'sky diving', '스카이다이빙', '바다', 'sea', 'sea picture', '바다 사진', '바닷속', 'animation', '하늘 사진', 'sky picture', 'sky photo', 'brand', 'brand shop', '편집샵', '산속', 'forest', 'forest picture', '산속 사진', '사막', 'desert', '사막 사진', 'desert picture', 'desert photo', 'nature picture', 'nature photo', 'nature', 'nature page2', 'nature page3', 'nature page4', 'background page1', 'background page2', 'background page3', 'background page4', 'background page5']
+# query = 'illustration'
 
-# 검색어 입력 받기
-query = input("입력: ")
-# 이미 크롤링했던 검색어일 때
-while checking() is True:
-    query = input("입력: ")
+for query in search_key:
+    # clickAndRetrieve() 과정에서 urlretrieve 이 너무 오래 걸릴 경우를 대비해 타임 아웃 지정
+    socket.setdefaulttimeout(30)
 
-crawling()
-filtering()
+    # 이미지들이 저장될 경로 및 폴더 이름
+    path = "D:/Crawling/"
+    date = "2020.09.24"
+
+    # 드라이버 경로 지정 (Microsoft Edge)
+    driver = webdriver.Chrome()
+
+    # 크롤링한 이미지 수
+    crawled_count = 6000
+
+    # 검색어 입력 받기
+    # query = input("입력: ")
+    # # 이미 크롤링했던 검색어일 때
+    # while checking() is True:
+    #     query = input("입력: ")
+
+    crawling()
+    filtering()
+
+driver.close()
